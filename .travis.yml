@@ -31,7 +31,7 @@ script:
     icount=1
     for image in `cat images.txt`
     do
-      echo [$icount/$count]: $image
+      #echo [$icount/$count]: $image
       image_name=${image##*/}
       docker pull $image
       #docker tag $image $DOCKER_HUB/$image_name
