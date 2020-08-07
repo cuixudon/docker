@@ -19,7 +19,7 @@ services: docker
 env:
   global:
     #- DOCKER_HUB=willdockerhub
-    - ALI_REGISTRY=registry.cn-shenzhen.aliyuncs.com/cxd01/docker:
+    - ALI_REGISTRY=registry.cn-shenzhen.aliyuncs.com/cxd01/docker
 before_script:
   #- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - echo "$ALI_PASSWORD" | docker login "$ALI_REGISTRY" -u "$ALI_USERNAME" --password-stdin
@@ -35,13 +35,13 @@ script:
       image_name=${image##*/}
       docker pull $image
       #docker tag $image $DOCKER_HUB/$image_name
-      docker tag $image $ALI_REGISTRY/$image_name
+      docker tag $image $ALI_REGISTRY:$image_name
       
       # push to dockerhub
       #docker push $DOCKER_HUB/$image_name
       
       # push to aliyun registry
-      docker push $ALI_REGISTRY/$image_name
+      docker push $ALI_REGISTRY:$image_name
       ((icount++))
     done
 after_script:
