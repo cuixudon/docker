@@ -35,13 +35,13 @@ script:
       image_name=${image##*/}
       docker pull $image
       #docker tag $image $DOCKER_HUB/$image_name
-      docker tag $image $ALI_REGISTRY/cxd01/docker:$image_name
+      docker tag $image $ALI_REGISTRY$image_name
       
       # push to dockerhub
       #docker push $DOCKER_HUB/$image_name
       
       # push to aliyun registry
-      docker push $ALI_REGISTRY/cxd01/docker:$image_name
+      docker push $ALI_REGISTRY$image_name
       ((icount++))
     done
 after_script:
